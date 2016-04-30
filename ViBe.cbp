@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ViBe" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\ViBe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\ViBe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++98" />
+			<Add option="-Wall" />
+			<Add option="-pedantic" />
+			<Add option="-fexceptions" />
+			<Add directory="..\..\vxl-1.17.0\include\vxl\core" />
+			<Add directory="..\..\vxl-1.17.0\include\vxl\v3p" />
+			<Add directory="..\..\vxl-1.17.0\include\vxl\vcl" />
+		</Compiler>
+		<Linker>
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libadvapi32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libcomdlg32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libgdi32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libkernel32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libole32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\liboleaut32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libshell32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libuser32.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libuuid.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libwinspool.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvil.a" />
+			<Add library="..\..\CodeBlocks-EP\MinGW\lib\libws2_32.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libbzip2.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libgeotiff.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libjpeg.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libnetlib.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libopenjpeg2.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libpng.a" />
+			<Add library="..\..\vxl-1.17.0\lib\librply.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libtestlib.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libtiff.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libv3p_netlib.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvbl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvbl_example_templates.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvbl_io.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvcl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvcsl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvgl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvgl_algo.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvgl_io.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvgl_xio.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvidl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvil_algo.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvil_io.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvil1.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvil1_io.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvnl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvnl_algo.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvnl_io.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvnl_xio.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvpgl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvpgl_algo.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvpgl_file_formats.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvpgl_io.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvpgl_xio.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvpl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvsl.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvul.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libvul_io.a" />
+			<Add library="..\..\vxl-1.17.0\lib\libz.a" />
+		</Linker>
+		<Unit filename="ViBe.cpp" />
+		<Unit filename="ViBe_Model.cpp" />
+		<Unit filename="ViBe_Model.h" />
+		<Unit filename="ViBe_Pixel.cpp" />
+		<Unit filename="ViBe_Pixel.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
