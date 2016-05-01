@@ -11,6 +11,7 @@
 				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="-path Data/Sequence1 -glob *jpeg" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -94,6 +95,8 @@
 		<Unit filename="ViBe_Model.h" />
 		<Unit filename="ViBe_Pixel.cpp" />
 		<Unit filename="ViBe_Pixel.h" />
+		<Unit filename="defines.h" />
+		<Unit filename="includes.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

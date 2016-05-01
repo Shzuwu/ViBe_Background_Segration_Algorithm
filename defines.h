@@ -9,7 +9,8 @@ const int minSamples = 2; // amount of random subsampling
 
 
 
-
+#define BACKGROUND 0
+#define FOREGROUND 255
 
 #define RADIUS 20
 #define MINSAMPLES 2

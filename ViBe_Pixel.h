@@ -31,6 +31,7 @@ public:
     static int euclideanDist(unsigned char* pixel, unsigned char* background_sample);
     void debugString();
     int getNumSamples();
+    int ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel);
 protected:
 private:
     unsigned char** samples;

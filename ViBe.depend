@@ -433,23 +433,26 @@
 1460338618 source:c:\denman\teaching\enb241\files\codeblocks-projects\vibe\vibe_pixel.cpp
 	"ViBe_Pixel.h"
 
-1462024982 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.cpp
+1462074382 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.cpp
 	"ViBe_Pixel.h"
 	<math.h>
 	<vul/vul_file.h>
 	<vcl_string.h>
 	<vcl_iostream.h>
 
-1462018612 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.h
+1462070236 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.h
 	"defines.h"
 	"includes.h"
 
-1462024818 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
+1462086597 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
 	<vil/vil_image_view.h>
 	<vbl/vbl_array_2d.h>
 	<vnl/vnl_random.h>
 	"ViBe_Model.h"
+	<vil/vil_save.h>
 	<vil/vil_load.h>
+	"ViBe_Pixel.h"
+	<time.h>
 
 1461751329 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\core\vil\vil_image_view.h
 	<vcl_iosfwd.h>
@@ -874,15 +877,15 @@
 
 1460351248 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\core\vnl\vnl_random.h
 
-1462003984 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.h
+1462072397 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.h
 	<vil/vil_image_view.h>
 	<vnl/vnl_random.h>
 	"ViBe_Pixel.h"
 	<vcl_vector.h>
 
-1462025062 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\defines.h
+1462072118 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\defines.h
 
-1462023060 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
+1462086507 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
 	"ViBe_Model.h"
 	<vil/vil_image_view.h>
 	<vil/vil_load.h>

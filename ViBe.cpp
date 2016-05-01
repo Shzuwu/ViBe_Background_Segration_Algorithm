@@ -1,8 +1,16 @@
 #include "ViBe_Model.h"
 
 #include <vil/vil_image_view.h>
+
+#ifndef _VIL_LOAD_
+#define _VIL_LOAD_
 #include <vil/vil_load.h>
+#endif
+
+#ifndef _VIL_SAVE_
+#define _VIL_SAVE_
 #include <vil/vil_save.h>
+#endif
 
 #include <vul/vul_file_iterator.h>
 
@@ -117,11 +125,14 @@ int main (int argc, char * argv[])
 
 		/// do something with filenames[i]
 		/// if filenames[i] is an image, we might want to load it, so we could do:
-		vil_image_view<unsigned char> anImage = vil_load(filenames[i].c_str());
+		vil_image_view<unsigned char> srcImage = vil_load(filenames[i].c_str());
+        vil_image_view<unsigned char> resultImage( srcImage.ni(), srcImage.nj(), 1);
+
+        Model.Segment(srcImage, resultImage);
 
 		vcl_stringstream outputFilename;
-        outputFilename << "output/" << "basicTest_" << i << ".png";
-        vil_save(anImage, outputFilename.str().c_str());
+        outputFilename << "output/" << "BackgroundSegmentation_" << i << ".png";
+        vil_save(resultImage, outputFilename.str().c_str());
 
 		// we could now do other things with this file, such as run it through a motion segmentation algorithm
 	}

@@ -36,16 +36,9 @@ void ViBe_Pixel::debugString()
 
 void ViBe_Pixel::addSample(unsigned char* pixel, int index)
 {
-    unsigned char* byteValue =  (unsigned char*)samples + index;
-
-    *(byteValue) = pixel[0];
-    *(byteValue+1) = pixel[1];
-    *(byteValue+2) = pixel[2];
-
-    /// This is equivalent to the pseudocode below:
-    //samples[index][0] = pixel[0];
-    //samples[index][1] = pixel[1];
-    //samples[index][2] = pixel[2];
+    samples[index][0] = pixel[0];
+    samples[index][1] = pixel[1];
+    samples[index][2] = pixel[2];
 }
 
 void ViBe_Pixel::addSample(unsigned char* pixel)
@@ -55,12 +48,13 @@ void ViBe_Pixel::addSample(unsigned char* pixel)
     //*(byteValue) = pixel[0];
     //*(byteValue+1) = pixel[1];
     //*(byteValue+2) = pixel[2];
-
-    /// This is equivalent to the pseudocode below:
-    samples[numSamples][0] = pixel[0];
-    samples[numSamples][1] = pixel[1];
-    samples[numSamples][2] = pixel[2];
-    numSamples++;
+    if (numSamples < 20)
+    {
+        numSamples++;
+    samples[numSamples-1][0] = pixel[0];
+    samples[numSamples-1][1] = pixel[1];
+    samples[numSamples-1][2] = pixel[2];
+    }
 }
 
 unsigned char** ViBe_Pixel::getSamples()
@@ -79,4 +73,21 @@ int ViBe_Pixel::euclideanDist(unsigned char* pixel, unsigned char* background_sa
                      (background_sample[1]-pixel[1])*(background_sample[1]-pixel[1]) +
                      (background_sample[2]-pixel[2])*(background_sample[2]-pixel[2]) );
     return distance;
+}
+
+
+int ViBe_Pixel::ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel)
+{
+    int count=0; int index = 0; int dist = 0;
+    while ((count < MINSAMPLES) && (index < NUM_SAMPLES) )
+    {
+        unsigned char** samples = background_model.getSamples();
+        dist = ViBe_Pixel::euclideanDist( samples[index], pixel);
+        if (dist < RADIUS)
+        {
+            count++;
+        }
+        index++;
+    }
+    return count;
 }

@@ -67,7 +67,7 @@ public:
 
 	void Segment(vil_image_view<unsigned char>& input, vil_image_view<unsigned char>& output);
 
-	void UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel, int x, int y);
+	void UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel, int x, int y, vil_image_view<unsigned char>& output);
 
 protected:
 
@@ -75,8 +75,8 @@ protected:
      * Pick a neighbouring pixel to update. Need to ensure that the selected pixel is a valid location (i.e. in the image)
      * x -  X location of pixel to find a neighbour for
      * y -  Y location of pixel to find a neighbour for
-     * nX - X locaon of neighbouring pixel to update. |x - nX| <= 1, 0 <= nX < Width
-     * nY - Y locaon of neighbouring pixel to update. |y - nY| <= 1, 0 <= nY < Height
+     * nX - X location of neighbouring pixel to update. |x - nX| <= 1, 0 <= nX < Width
+     * nY - Y location of neighbouring pixel to update. |y - nY| <= 1, 0 <= nY < Height
      */
 	void PickNeighbour(int x, int y, int& nX, int& nY);
 
@@ -84,8 +84,6 @@ protected:
      * Create the model. Initialise all data structures. Should be called from Init once all parameters have been set
      */
 	void CreateModel();
-
-	int ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel);
 
     // Model Parameters
 	int samples;                // number of samples per pixel
