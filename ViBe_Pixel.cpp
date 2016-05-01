@@ -50,7 +50,7 @@ void ViBe_Pixel::addSample(unsigned char* pixel)
     //*(byteValue+2) = pixel[2];
     if (numSamples < 20)
     {
-        numSamples++;
+    numSamples++;
     samples[numSamples-1][0] = pixel[0];
     samples[numSamples-1][1] = pixel[1];
     samples[numSamples-1][2] = pixel[2];

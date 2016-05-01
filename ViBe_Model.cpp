@@ -130,17 +130,39 @@ void ViBe_Model::Segment(vil_image_view<unsigned char>& input, vil_image_view<un
             /// MINSAMPLES pixels, then we have seen this colour before, and
             /// the pixel is background.
             //vcl_cout << count << vcl_endl;
-
+            int rand;
             if (count >= MINSAMPLES)
             {
                 output(i,j,0) = BACKGROUND;
+                //update current pixel model
+                rand = randomNumberGenerator->lrand32(randomSubsampling-1);
+                //vcl_cout << rand << vcl_endl;
+                if (rand == 0)
+                {
+                    this->UpdateModel( *(model[i][j]), pixel);
+                }
+                // update a random neighbouring pixel's model
+                rand = randomNumberGenerator->lrand32(randomSubsampling-1);
+                if (rand == 0)
+                {
+                    int newX; int newY;
+                    vcl_cout << i << vcl_endl;
+                    vcl_cout << j << vcl_endl;
+                    this->PickNeighbour(i,j,newX,newY,input);
+
+                    //vcl_cout << newX << vcl_endl;
+                    //vcl_cout << newY << vcl_endl;
+
+                    this->UpdateModel( *(model[newX][newY]), pixel);
+
+                }
             }
             else
             {
                 output(i,j,0) = FOREGROUND;
             }
 
-            this->UpdateModel( *(model[i][j]), pixel, i, j, output);
+
 
 
         }
@@ -149,28 +171,50 @@ void ViBe_Model::Segment(vil_image_view<unsigned char>& input, vil_image_view<un
 
 }
 
-void ViBe_Model::UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel, int x, int y, vil_image_view<unsigned char>& output)
+void ViBe_Model::UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel)
 {
-    int rand = randomNumberGenerator->lrand32(randomSubsampling-1);
-    //vcl_cout << rand << vcl_endl;
-    if (rand == 0)
+
+    /// random subsampling
+    /// replace randomly chosen sample
+    int rand = randomNumberGenerator->lrand32( background_model.getNumSamples() - 1 );
+    background_model.addSample( pixel, rand);
+}
+
+void ViBe_Model::PickNeighbour(int x, int y, int& nX, int& nY, vil_image_view <unsigned char>& input)
+{
+    while(1)
     {
-        /// random subsampling
-        /// replace randomly chosen sample
-        rand = randomNumberGenerator->lrand32( background_model.getNumSamples() - 1 );
-        background_model.addSample( pixel, rand);
+        nX = this->getRandomNeighbourCoord(x);
+        nY = this->getRandomNeighbourCoord(y);
+        if ( (nX>=0) && nX<input.ni() )
+        {
+            if ( (nY>=0) && (nY<input.nj()) )
+            {
+                vcl_cout << nX << vcl_endl;
+                vcl_cout << nY << vcl_endl;
+                return;
+            }
+        }
     }
 
 
-
-
-}
-
-void ViBe_Model::PickNeighbour(int x, int y, int& nX, int& nY)
-{
 }
 
 void ViBe_Model::CreateModel()
 {
 }
 
+int ViBe_Model::getRandomNeighbourCoord(int coord)
+{
+    int rand = randomNumberGenerator->lrand32(1);
+
+    if (rand)
+    {
+        return coord+1;
+    }
+    else
+    {
+        return coord-1;
+    }
+
+}

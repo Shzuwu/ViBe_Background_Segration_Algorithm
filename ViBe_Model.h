@@ -67,7 +67,7 @@ public:
 
 	void Segment(vil_image_view<unsigned char>& input, vil_image_view<unsigned char>& output);
 
-	void UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel, int x, int y, vil_image_view<unsigned char>& output);
+	void UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel);
 
 protected:
 
@@ -78,7 +78,8 @@ protected:
      * nX - X location of neighbouring pixel to update. |x - nX| <= 1, 0 <= nX < Width
      * nY - Y location of neighbouring pixel to update. |y - nY| <= 1, 0 <= nY < Height
      */
-	void PickNeighbour(int x, int y, int& nX, int& nY);
+	void PickNeighbour(int x, int y, int& nX, int& nY, vil_image_view <unsigned char>& input);
+	int getRandomNeighbourCoord(int coord);
 
     /*
      * Create the model. Initialise all data structures. Should be called from Init once all parameters have been set
