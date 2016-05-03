@@ -146,8 +146,8 @@ void ViBe_Model::Segment(vil_image_view<unsigned char>& input, vil_image_view<un
                 if (rand == 0)
                 {
                     int newX; int newY;
-                    vcl_cout << i << vcl_endl;
-                    vcl_cout << j << vcl_endl;
+                    //vcl_cout << i << vcl_endl;
+                    //vcl_cout << j << vcl_endl;
                     this->PickNeighbour(i,j,newX,newY,input);
 
                     //vcl_cout << newX << vcl_endl;
@@ -190,8 +190,8 @@ void ViBe_Model::PickNeighbour(int x, int y, int& nX, int& nY, vil_image_view <u
         {
             if ( (nY>=0) && (nY<input.nj()) )
             {
-                vcl_cout << nX << vcl_endl;
-                vcl_cout << nY << vcl_endl;
+                //vcl_cout << nX << vcl_endl;
+                //vcl_cout << nY << vcl_endl;
                 return;
             }
         }
