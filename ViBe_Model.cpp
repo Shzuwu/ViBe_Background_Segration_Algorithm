@@ -32,6 +32,17 @@ ViBe_Model::ViBe_Model()
 
 ViBe_Model::~ViBe_Model()
 {
+    delete randomNumberGenerator;
+    /// deallocate model***
+    for (int i=0; i<width; i++)
+    {
+        for (int j =0; j<height; j++)
+        {
+            delete model[i][j];
+        }
+        delete[] model[i];
+    }
+    delete[] model
 }
 
 void ViBe_Model::Init(int Samples, int Radius, int MinSamplesBackground, int RandomSubsampling, int Width, int Height)
@@ -55,15 +66,16 @@ void ViBe_Model::Init(int Samples, int Radius, int MinSamplesBackground, int Ran
     for (int i=0; i<width; i++)
     {
         model[i] = new ViBe_Pixel*[height];
-    }
-
-    for (int i=0; i<width; i++)
-    {
         for (int j=0; j<height; j++)
         {
             model[i][j] = new ViBe_Pixel();
         }
     }
+
+    //for (int i=0; i<width; i++)
+    //{
+        
+    //}
 
     /*
     vcl_cout << "Echoing the two-dimensional array: " << vcl_endl;
