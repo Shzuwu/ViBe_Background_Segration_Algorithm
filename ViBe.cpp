@@ -48,18 +48,24 @@ int main (int argc, char * argv[])
 	/// group them according to type, i.e. all the strings first here, so we have vul_arg<vcl_string>
 	/// for each command line argument, you have create a "vul_arg", this takes the following three arguments:
 	///	  - the argument itself, this is what you expect to see on the command line when you call it
-	///    - a descritpion of this arguement, i.e. what it's for
+	///    - a description of this arguement, i.e. what it's for
 	///    - an optional default value.
 	vul_arg<vcl_string>
-		arg_in_path("-path", "Input path, i.e. C:/somefiles/"),
-		arg_in_glob("-glob", "Input glob, i.e. *png, this will get all png's.");
+		arg_in_path("-path", "Input data path, i.e. C:/somefiles/"),
+		arg_in_glob("-glob", "Input glob, i.e. *png, this will get all png's."),
+		arg_in_outputPath("-out", "Path to output background segmented images (default = 'C:/../source file directory/output')");
+
 
 	/// now we have some integer arguments
-	vul_arg<unsigned> arg_number("-n", "A number.", 4),
-		arg_number_again("-n2", "another number.", 4);
+	vul_arg<unsigned int>
+        arg_in_minSamples("-min", "minimum number of similar samples required to declare a pixel is background (default = 2)", 2),
+		arg_in_radius("-r", "radius of sphere for acceptably similar nearby pixels in the rgb colour space (default = 20)", 20),
+		arg_in_subsampling("-sub","stochastic rate at which background pixels are updated (default = 16)",16),
+		arg_in_numTrainingImages("-train","the number of images used to train the initial background model (default = 20)",20),
+        arg_in_accuracy("-acc", "Run comparison to ground truth? Boolean value either 1 or 0 (default == 0)");
 
 	/// finally, we have some floats
-	vul_arg<float> arg_float("-f", "A float", 4.0);
+	//vul_arg<float> arg_float("-f", "A float", 4.0);
 
 	/// call vul_arg_parse(argc, argv) to parse the arguments, this will go through the command line string, look for all the specified argument string,
 	/// and extract the provided values.
@@ -109,12 +115,64 @@ int main (int argc, char * argv[])
         return 0;
     }
 
+    int minSamples = arg_in_minSamples();
+    int radius = arg_in_radius();
+    int subSampling = arg_in_subsampling();
+    int numTrainingImages = arg_in_numTrainingImages();
+    int compareGroundTruth = arg_in_accuracy();
+
+    /// Validate user input
+    if ( (minSamples < 1) || (minSamples > 5000) )
+    {
+        vcl_cout << "-min is out of range, changing to default" << vcl_endl;
+        minSamples = 2;
+    }
+    if ( (radius < 1) || (radius > 442) )
+    {
+        vcl_cout << "-r is out of range, changing to default" << vcl_endl;
+        radius = 20;
+    }
+    if ( ( subSampling < 1 ) || (subSampling > 5000))
+    {
+        vcl_cout << "-sub is out of range, changing to default" << vcl_endl;
+        radius = 16;
+    }
+    if ( ( numTrainingImages < 1 ) || (subSampling > filenames.size()))
+    {
+        vcl_cout << "-train is out of range, changing to default" << vcl_endl;
+        numTrainingImages = 20;
+    }
+    if ( ( compareGroundTruth == 1 ) || (compareGroundTruth == 0))
+    {
+        ///Do nothing
+        //compareGroundTruth = compareGroundTruth;
+    }
+    else
+    {
+        vcl_cout << "-acc is out of range, changing to default" << vcl_endl;
+        compareGroundTruth = 0;
+    }
+
+    vcl_cout <<  "-min = ";
+    vcl_cout << minSamples  << vcl_endl;
+    vcl_cout << "-r = ";
+    vcl_cout << radius  << vcl_endl;
+    vcl_cout << "-sub = ";
+    vcl_cout << subSampling  << vcl_endl;
+    vcl_cout << "-train = ";
+    vcl_cout << numTrainingImages  << vcl_endl;
+    vcl_cout << "-acc = ";
+    vcl_cout << compareGroundTruth << vcl_endl;
+    vcl_cout << "Segmenting images in: " << directory << vcl_endl;
+    vcl_cout << "With extension: " << extension << vcl_endl;
+
     vil_image_view<unsigned char> anImage = vil_load(filenames[0].c_str());
 
+    ///
     ViBe_Model Model;
-    Model.Init(NUM_SAMPLES, RADIUS, MINSAMPLES, SUBSAMPLING, anImage.ni(), anImage.nj());
+    Model.Init(minSamples, radius, minSamples, subSampling, anImage.ni(), anImage.nj());
 
-    Model.InitBackground(NUM_TRAINING_IMAGES, filenames);
+    Model.InitBackground(numTrainingImages, filenames);
 
 
 

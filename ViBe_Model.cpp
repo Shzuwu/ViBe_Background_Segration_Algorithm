@@ -38,11 +38,12 @@ ViBe_Model::~ViBe_Model()
     {
         for (int j =0; j<height; j++)
         {
+            //~model[i][j];
             delete model[i][j];
         }
         delete[] model[i];
     }
-    delete[] model
+    delete[] model;
 }
 
 void ViBe_Model::Init(int Samples, int Radius, int MinSamplesBackground, int RandomSubsampling, int Width, int Height)
@@ -74,7 +75,7 @@ void ViBe_Model::Init(int Samples, int Radius, int MinSamplesBackground, int Ran
 
     //for (int i=0; i<width; i++)
     //{
-        
+
     //}
 
     /*

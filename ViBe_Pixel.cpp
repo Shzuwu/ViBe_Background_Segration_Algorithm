@@ -29,6 +29,16 @@ ViBe_Pixel::ViBe_Pixel()
     }
     //vcl_cout << &numSamples << vcl_endl;
 }
+
+ViBe_Pixel::~ViBe_Pixel()
+{
+    for (int i=0; i<numSamples; i++)
+    {
+        delete[] samples[i];
+    }
+    delete[] samples;
+}
+
 void ViBe_Pixel::debugString()
 {
     vcl_cout << "You have access to the ViBe_Pixel!" << vcl_endl;

@@ -433,18 +433,18 @@
 1460338618 source:c:\denman\teaching\enb241\files\codeblocks-projects\vibe\vibe_pixel.cpp
 	"ViBe_Pixel.h"
 
-1462089055 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.cpp
+1462942029 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.cpp
 	"ViBe_Pixel.h"
 	<math.h>
 	<vul/vul_file.h>
 	<vcl_string.h>
 	<vcl_iostream.h>
 
-1462070236 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.h
+1462942227 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.h
 	"defines.h"
 	"includes.h"
 
-1462093845 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
+1462942169 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
 	<vil/vil_image_view.h>
 	<vbl/vbl_array_2d.h>
 	<vnl/vnl_random.h>
@@ -883,9 +883,9 @@
 	"ViBe_Pixel.h"
 	<vcl_vector.h>
 
-1462072118 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\defines.h
+1462943060 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\defines.h
 
-1462086868 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
+1462965659 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
 	"ViBe_Model.h"
 	<vil/vil_image_view.h>
 	<vil/vil_load.h>

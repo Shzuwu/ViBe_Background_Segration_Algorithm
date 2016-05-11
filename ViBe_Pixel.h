@@ -25,6 +25,7 @@ class ViBe_Pixel
 {
 public:
     ViBe_Pixel();
+    ~ViBe_Pixel();
     void addSample(unsigned char* pixel, int index);
     void addSample(unsigned char* pixel);
     unsigned char** getSamples();
