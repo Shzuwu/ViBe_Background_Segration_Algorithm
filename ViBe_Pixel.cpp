@@ -19,11 +19,11 @@
 #include <vcl_iostream.h>
 #endif
 
-ViBe_Pixel::ViBe_Pixel()
+ViBe_Pixel::ViBe_Pixel(int maxSamples)
 {
     numSamples = 0;
-    samples = new unsigned char*[NUM_SAMPLES];
-    for (int i=0; i<NUM_SAMPLES; i++)
+    samples = new unsigned char*[maxSamples];
+    for (int i=0; i<maxSamples; i++)
     {
         samples[i] = new unsigned char[3];
     }
@@ -53,11 +53,6 @@ void ViBe_Pixel::addSample(unsigned char* pixel, int index)
 
 void ViBe_Pixel::addSample(unsigned char* pixel)
 {
-    //vcl_cout << numSamples << vcl_endl;
-    //unsigned char* byteValue =  (unsigned char*)samples + numSamples;
-    //*(byteValue) = pixel[0];
-    //*(byteValue+1) = pixel[1];
-    //*(byteValue+2) = pixel[2];
     if (numSamples < 20)
     {
     numSamples++;
@@ -83,21 +78,4 @@ int ViBe_Pixel::euclideanDist(unsigned char* pixel, unsigned char* background_sa
                      (background_sample[1]-pixel[1])*(background_sample[1]-pixel[1]) +
                      (background_sample[2]-pixel[2])*(background_sample[2]-pixel[2]) );
     return distance;
-}
-
-
-int ViBe_Pixel::ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel)
-{
-    int count=0; int index = 0; int dist = 0;
-    while ((count < MINSAMPLES) && (index < NUM_SAMPLES) )
-    {
-        unsigned char** samples = background_model.getSamples();
-        dist = ViBe_Pixel::euclideanDist( samples[index], pixel);
-        if (dist < RADIUS)
-        {
-            count++;
-        }
-        index++;
-    }
-    return count;
 }

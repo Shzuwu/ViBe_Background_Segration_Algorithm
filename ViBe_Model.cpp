@@ -56,12 +56,7 @@ void ViBe_Model::Init(int Samples, int Radius, int MinSamplesBackground, int Ran
     height = Height;
 
     unsigned long seed = 9667566;
-    //vnl_random RandomNumberGenerator = vnl_random(seed);
     randomNumberGenerator = new vnl_random(seed);
-
-    //ViBe_Pixel*** model = NULL;
-
-    //vcl_cout << model << vcl_endl;
 
     model = new ViBe_Pixel**[width];
     for (int i=0; i<width; i++)
@@ -69,31 +64,15 @@ void ViBe_Model::Init(int Samples, int Radius, int MinSamplesBackground, int Ran
         model[i] = new ViBe_Pixel*[height];
         for (int j=0; j<height; j++)
         {
-            model[i][j] = new ViBe_Pixel();
+            model[i][j] = new ViBe_Pixel(samples);
         }
     }
-
-    //for (int i=0; i<width; i++)
-    //{
-
-    //}
-
-    /*
-    vcl_cout << "Echoing the two-dimensional array: " << vcl_endl;
-    for (int i=0; i<width; i++)
-    {
-        for (int j=0; j<height; j++)
-        {
-            vcl_cout << model[i][j]->getNumSamples() << vcl_endl;
-        }
-    }
-    */
 }
 
-void ViBe_Model::InitBackground(int numTrainingImages, vcl_vector<vcl_string> filenames)
+void ViBe_Model::InitBackground(vcl_vector<vcl_string> filenames)
 {
     //vcl_cout << numTrainingImages << vcl_endl;
-    for (int n = 0; n < numTrainingImages; n++)
+    for (int n = 0; n < samples; n++)
     {
         vil_image_view<unsigned char> inputImage = vil_load(filenames[n].c_str());
         for (int i=0; i<inputImage.ni(); i++)
@@ -108,24 +87,6 @@ void ViBe_Model::InitBackground(int numTrainingImages, vcl_vector<vcl_string> fi
             }
         }
     }
-    ///Checking that the data structure is working correctly
-    /*
-    vil_image_view<unsigned char> inputImage = vil_load(filenames[15].c_str());
-
-    vil_image_view<unsigned char> checkBackground( inputImage.ni(), inputImage.nj(), inputImage.nplanes() );
-    checkBackground.fill(0);
-    for (int i=0; i<inputImage.ni(); i++)
-    {
-        for (int j=0; j<inputImage.nj(); j++)
-        {
-            unsigned char** samples = model[i][j]->getSamples();
-            checkBackground(i,j,0) = samples[15][0];
-            checkBackground(i,j,1) =samples[15][1];
-            checkBackground(i,j,2) =samples[15][2];
-        }
-    }
-    vil_save(checkBackground, "CheckBackground.jpeg");
-    */
 }
 
 // output is a single plane image
@@ -138,13 +99,13 @@ void ViBe_Model::Segment(vil_image_view<unsigned char>& input, vil_image_view<un
             unsigned char pixel[3] = { input(i,j,0),input(i,j,1),input(i,j,2) };
 
             // 1. Compare pixel to background model
-            int count = model[i][j]->ComparePixel( *(model[i][j]), pixel);
+            int count = this->ComparePixel( *(model[i][j]), pixel);
             /// Foreground or background? If our pixel is similar to at least
-            /// MINSAMPLES pixels, then we have seen this colour before, and
+            /// minsamplesBackground pixels, then we have seen this colour before, and
             /// the pixel is background.
             //vcl_cout << count << vcl_endl;
             int rand;
-            if (count >= MINSAMPLES)
+            if (count >= minSamplesBackground)
             {
                 output(i,j,0) = BACKGROUND;
                 //update current pixel model
@@ -159,28 +120,16 @@ void ViBe_Model::Segment(vil_image_view<unsigned char>& input, vil_image_view<un
                 if (rand == 0)
                 {
                     int newX; int newY;
-                    //vcl_cout << i << vcl_endl;
-                    //vcl_cout << j << vcl_endl;
                     this->PickNeighbour(i,j,newX,newY,input);
-
-                    //vcl_cout << newX << vcl_endl;
-                    //vcl_cout << newY << vcl_endl;
-
                     this->UpdateModel( *(model[newX][newY]), pixel);
-
                 }
             }
             else
             {
                 output(i,j,0) = FOREGROUND;
             }
-
-
-
-
         }
     }
-    //vil_save(output,"TestImage.jpeg");
 
 }
 
@@ -191,43 +140,76 @@ void ViBe_Model::UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel
     /// replace randomly chosen sample
     int rand = randomNumberGenerator->lrand32( background_model.getNumSamples() - 1 );
     background_model.addSample( pixel, rand);
+    numUpdates++;
 }
 
 void ViBe_Model::PickNeighbour(int x, int y, int& nX, int& nY, vil_image_view <unsigned char>& input)
 {
     while(1)
     {
-        nX = this->getRandomNeighbourCoord(x);
-        nY = this->getRandomNeighbourCoord(y);
+        int rand = randomNumberGenerator->lrand32(7);
+
+        switch (rand)
+        {
+        case 0:
+            nX = x-1;
+            nY = y+1;
+            break;
+        case 1:
+            nX = x;
+            nY = y+1;
+            break;
+        case 2:
+            nX = x+1;
+            nY = y+1;
+            break;
+        case 3:
+            nX = x+1;
+            nY = y;
+            break;
+        case 4:
+            nX = x+1;
+            nY = y-1;
+            break;
+        case 5:
+            nX = x;
+            nY = y-1;
+            break;
+        case 6:
+            nX = x-1;
+            nY = y-1;
+            break;
+        case 7:
+            nX = x-1;
+            nY = y;
+            break;
+        }
         if ( (nX>=0) && nX<input.ni() )
         {
             if ( (nY>=0) && (nY<input.nj()) )
             {
-                //vcl_cout << nX << vcl_endl;
-                //vcl_cout << nY << vcl_endl;
                 return;
             }
         }
     }
-
-
 }
 
-void ViBe_Model::CreateModel()
+//void ViBe_Model::CreateModel()
+//{
+//}
+
+int ViBe_Model::ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel)
 {
-}
-
-int ViBe_Model::getRandomNeighbourCoord(int coord)
-{
-    int rand = randomNumberGenerator->lrand32(1);
-
-    if (rand)
+    int count=0; int index = 0; int dist = 0;
+    while ((count < minSamplesBackground) && (index < samples) )
     {
-        return coord+1;
+        unsigned char** samples = background_model.getSamples();
+        dist = ViBe_Pixel::euclideanDist( samples[index], pixel);
+        if (dist < radius)
+        {
+            count++;
+        }
+        index++;
     }
-    else
-    {
-        return coord-1;
-    }
-
+    return count;
 }

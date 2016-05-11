@@ -24,7 +24,7 @@
 class ViBe_Pixel
 {
 public:
-    ViBe_Pixel();
+    ViBe_Pixel(int maxSamples);
     ~ViBe_Pixel();
     void addSample(unsigned char* pixel, int index);
     void addSample(unsigned char* pixel);
@@ -32,7 +32,6 @@ public:
     static int euclideanDist(unsigned char* pixel, unsigned char* background_sample);
     void debugString();
     int getNumSamples();
-    int ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel);
 protected:
 private:
     unsigned char** samples;

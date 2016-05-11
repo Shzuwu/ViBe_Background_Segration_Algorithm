@@ -51,9 +51,9 @@ int main (int argc, char * argv[])
 	///    - a description of this arguement, i.e. what it's for
 	///    - an optional default value.
 	vul_arg<vcl_string>
-		arg_in_path("-path", "Input data path, i.e. C:/somefiles/"),
-		arg_in_glob("-glob", "Input glob, i.e. *png, this will get all png's."),
-		arg_in_outputPath("-out", "Path to output background segmented images (default = 'C:/../source file directory/output')");
+		arg_in_path("-path", "Input data path, i.e. C:/somefiles/", "Data/Sequence1"),
+		arg_in_glob("-glob", "Input glob, i.e. *png, this will get all png's.", "*jpeg"),
+		arg_in_outputPath("-out", "Path to output background segmented images (default = 'C:/../source file directory/output')", "output");
 
 
 	/// now we have some integer arguments
@@ -108,6 +108,13 @@ int main (int argc, char * argv[])
 			filenames.push_back (fn());
 		}
 	}
+
+	if (!vul_file::is_directory(arg_in_outputPath() ) )
+    {
+        vcl_cout << "Invalid output directory, exiting." << vcl_endl;
+        return 0;
+    }
+
 
 	if (filenames.size() == 0)
     {
@@ -165,16 +172,14 @@ int main (int argc, char * argv[])
     vcl_cout << compareGroundTruth << vcl_endl;
     vcl_cout << "Segmenting images in: " << directory << vcl_endl;
     vcl_cout << "With extension: " << extension << vcl_endl;
-
+    vcl_cout << "Output dir: " << arg_in_outputPath() << vcl_endl;
     vil_image_view<unsigned char> anImage = vil_load(filenames[0].c_str());
 
     ///
     ViBe_Model Model;
-    Model.Init(minSamples, radius, minSamples, subSampling, anImage.ni(), anImage.nj());
+    Model.Init(numTrainingImages, radius, minSamples, subSampling, anImage.ni(), anImage.nj());
 
-    Model.InitBackground(numTrainingImages, filenames);
-
-
+    Model.InitBackground(filenames);
 
 	/// filenames now contain all of the files with our target extension in our directory, if we want to loop through them, we can now do
 	for (int i = 0; i < filenames.size(); i++)
@@ -189,7 +194,7 @@ int main (int argc, char * argv[])
         Model.Segment(srcImage, resultImage);
 
 		vcl_stringstream outputFilename;
-        outputFilename << "output/" << "BackgroundSegmentation_" << i << ".png";
+        outputFilename << arg_in_outputPath() << "/BackgroundSegmentation_" << i << ".png";
         vil_save(resultImage, outputFilename.str().c_str());
 
 		// we could now do other things with this file, such as run it through a motion segmentation algorithm

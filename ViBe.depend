@@ -433,18 +433,18 @@
 1460338618 source:c:\denman\teaching\enb241\files\codeblocks-projects\vibe\vibe_pixel.cpp
 	"ViBe_Pixel.h"
 
-1462942029 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.cpp
+1462972590 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.cpp
 	"ViBe_Pixel.h"
 	<math.h>
 	<vul/vul_file.h>
 	<vcl_string.h>
 	<vcl_iostream.h>
 
-1462942227 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.h
+1462972622 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_pixel.h
 	"defines.h"
 	"includes.h"
 
-1462942169 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
+1462972638 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
 	<vil/vil_image_view.h>
 	<vbl/vbl_array_2d.h>
 	<vnl/vnl_random.h>
@@ -877,15 +877,15 @@
 
 1460351248 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\core\vnl\vnl_random.h
 
-1462090145 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.h
+1462975123 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.h
 	<vil/vil_image_view.h>
 	<vnl/vnl_random.h>
 	"ViBe_Pixel.h"
 	<vcl_vector.h>
 
-1462943060 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\defines.h
+1462973996 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\defines.h
 
-1462965659 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
+1462974768 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
 	"ViBe_Model.h"
 	<vil/vil_image_view.h>
 	<vil/vil_load.h>
