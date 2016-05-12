@@ -21,6 +21,7 @@
 				<Option object_output="obj\Release\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="-acc 1" />
 				<Compiler>
 					<Add option="-O3" />
 					<Add option="-O2" />
@@ -92,6 +93,8 @@
 			<Add library="..\..\vxl-1.17.0\lib\libvul_io.a" />
 			<Add library="..\..\vxl-1.17.0\lib\libz.a" />
 		</Linker>
+		<Unit filename="Evaluation.cpp" />
+		<Unit filename="Evaluation.h" />
 		<Unit filename="ViBe.cpp" />
 		<Unit filename="ViBe_Model.cpp" />
 		<Unit filename="ViBe_Model.h" />

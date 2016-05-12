@@ -444,15 +444,8 @@
 	"defines.h"
 	"includes.h"
 
-1462972638 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
-	<vil/vil_image_view.h>
-	<vbl/vbl_array_2d.h>
-	<vnl/vnl_random.h>
+1463012204 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.cpp
 	"ViBe_Model.h"
-	<vil/vil_save.h>
-	<vil/vil_load.h>
-	"ViBe_Pixel.h"
-	<time.h>
 
 1461751329 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\core\vil\vil_image_view.h
 	<vcl_iosfwd.h>
@@ -877,15 +870,23 @@
 
 1460351248 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\core\vnl\vnl_random.h
 
-1462975123 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.h
+1463012202 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe_model.h
 	<vil/vil_image_view.h>
 	<vnl/vnl_random.h>
 	"ViBe_Pixel.h"
 	<vcl_vector.h>
+	<vil/vil_image_view.h>
+	<vbl/vbl_array_2d.h>
+	<vnl/vnl_random.h>
+	<vil/vil_save.h>
+	<vil/vil_load.h>
+	"ViBe_Pixel.h"
+	<time.h>
+	"Evaluation.h"
 
 1462973996 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\defines.h
 
-1462974768 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
+1463010288 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\vibe.cpp
 	"ViBe_Model.h"
 	<vil/vil_image_view.h>
 	<vil/vil_load.h>
@@ -893,6 +894,7 @@
 	<vul/vul_file_iterator.h>
 	<vul/vul_file.h>
 	<vcl_vector.h>
+	"Evaluation.h"
 	<vul/vul_arg.h>
 
 1460351237 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\core\vil\vil_load.h
@@ -1336,4 +1338,58 @@
 1461923720 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\includes.h
 	<vector>
 	<string>
+
+1463009910 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\evaluation.h
+	<vil/vil_image_view.h>
+
+1463014149 source:c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\codeblocks-projects\vibe\evaluation.cpp
+	"Evaluation.h"
+	<vcl_iomanip.h>
+	<math.h>
+
+1460351266 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\vcl_iomanip.h
+	"vcl_compiler.h"
+	<gcc-295/vcl_iomanip.h>
+	<sgi/vcl_iomanip.h>
+	"iso/vcl_iomanip.h"
+
+1460351269 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\gcc-295\vcl_iomanip.h
+	<iomanip>
+	<vcl_ios.h>
+	"generic/vcl_iomanip.h"
+
+1460351266 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\vcl_ios.h
+	"vcl_compiler.h"
+	"sgi/vcl_ios.h"
+	"vcl_iostream.h"
+	"generic/vcl_ios.h"
+	"gcc-295/vcl_ios.h"
+	"vcl_iostream.h"
+	"generic/vcl_ios.h"
+	"iso/vcl_ios.h"
+
+1460351274 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\sgi\vcl_ios.h
+	<iostream.h>
+	"generic/vcl_ios.h"
+
+1460351271 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\generic\vcl_ios.h
+
+1460351270 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\gcc-295\vcl_ios.h
+	<vcl_iostream.h>
+	"generic/vcl_ios.h"
+
+1460351273 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\iso\vcl_ios.h
+	<ios>
+	"../generic/vcl_ios.h"
+
+1460351271 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\generic\vcl_iomanip.h
+
+1460351274 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\sgi\vcl_iomanip.h
+	<iomanip.h>
+	<vcl_ios.h>
+	"generic/vcl_iomanip.h"
+
+1460351273 c:\users\wade jensen\dropbox\01_en40\year_3_sem_1\enb241\codeblocks_and_vxl\vxl-1.17.0\include\vxl\vcl\iso\vcl_iomanip.h
+	<iomanip>
+	"../generic/vcl_iomanip.h"
 

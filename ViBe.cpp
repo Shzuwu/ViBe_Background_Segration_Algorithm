@@ -24,6 +24,10 @@
 #include <vcl_vector.h>
 #endif
 
+#ifndef _EVALUATION_
+#define _EVALUATION_
+#include "Evaluation.h"
+#endif
 
 #include <vul/vul_arg.h>
 
@@ -53,7 +57,8 @@ int main (int argc, char * argv[])
 	vul_arg<vcl_string>
 		arg_in_path("-path", "Input data path, i.e. C:/somefiles/", "Data/Sequence1"),
 		arg_in_glob("-glob", "Input glob, i.e. *png, this will get all png's.", "*jpeg"),
-		arg_in_outputPath("-out", "Path to output background segmented images (default = 'C:/../source file directory/output')", "output");
+		arg_in_outputPath("-out", "Path to output background segmented images (default = 'C:/../source file directory/output')", "output"),
+		arg_in_GT("-gt", "File path to ground truth image","Data/Sequence1/groundtruth.bmp");
 
 
 	/// now we have some integer arguments
@@ -62,7 +67,7 @@ int main (int argc, char * argv[])
 		arg_in_radius("-r", "radius of sphere for acceptably similar nearby pixels in the rgb colour space (default = 20)", 20),
 		arg_in_subsampling("-sub","stochastic rate at which background pixels are updated (default = 16)",16),
 		arg_in_numTrainingImages("-train","the number of images used to train the initial background model (default = 20)",20),
-        arg_in_accuracy("-acc", "Run comparison to ground truth? Boolean value either 1 or 0 (default == 0)");
+        arg_in_accuracy("-acc", "Run comparison to ground truth? Boolean value either 1 or 0 (default == 0)",1);
 
 	/// finally, we have some floats
 	//vul_arg<float> arg_float("-f", "A float", 4.0);
@@ -112,6 +117,12 @@ int main (int argc, char * argv[])
 	if (!vul_file::is_directory(arg_in_outputPath() ) )
     {
         vcl_cout << "Invalid output directory, exiting." << vcl_endl;
+        return 0;
+    }
+
+    if (!vul_file::exists( arg_in_GT() ) )
+    {
+        vcl_cout << "Invalid ground truth image,exiting" << vcl_endl;
         return 0;
     }
 
@@ -173,6 +184,8 @@ int main (int argc, char * argv[])
     vcl_cout << "Segmenting images in: " << directory << vcl_endl;
     vcl_cout << "With extension: " << extension << vcl_endl;
     vcl_cout << "Output dir: " << arg_in_outputPath() << vcl_endl;
+    vcl_cout << "Ground Truth image: " << arg_in_GT() << vcl_endl;
+
     vil_image_view<unsigned char> anImage = vil_load(filenames[0].c_str());
 
     ///
@@ -196,7 +209,17 @@ int main (int argc, char * argv[])
 		vcl_stringstream outputFilename;
         outputFilename << arg_in_outputPath() << "/BackgroundSegmentation_" << i << ".png";
         vil_save(resultImage, outputFilename.str().c_str());
-
+        if ( i == (filenames.size() - 1) )
+        {
+            if (compareGroundTruth)
+            {
+                vil_image_view <unsigned char> segOut = vil_load(outputFilename.str().c_str());
+                vil_image_view <unsigned char> imageGT = vil_load( arg_in_GT().c_str() );
+                Evaluation Eval;
+                Eval.compareGroundTruth( imageGT, segOut, segOut.ni(), segOut.nj());
+            }
+        }
 		// we could now do other things with this file, such as run it through a motion segmentation algorithm
 	}
+return 0;
 }

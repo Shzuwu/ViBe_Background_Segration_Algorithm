@@ -11,6 +11,40 @@
 #include <vcl_vector.h>
 #endif
 
+#ifndef _VIL_IMAGE_VIEW_
+#define _VIL_IMAGE_VIEW_
+#include <vil/vil_image_view.h>
+#endif
+
+#include <vbl/vbl_array_2d.h>
+
+#include <vnl/vnl_random.h>
+
+#ifndef _VIL_SAVE_
+#define _VIL_SAVE_
+#include <vil/vil_save.h>
+#endif
+
+#ifndef _VIL_LOAD_
+#define _VIL_LOAD_
+#include <vil/vil_load.h>
+#endif
+
+#ifndef __VIBE_PIXEL_H__
+#define __VIBE_PIXEL_H__
+#include "ViBe_Pixel.h"
+#endif
+
+#ifndef _TIME_
+#define _TIME_
+#include <time.h>
+#endif
+
+#ifndef _EVALUATION_
+#define _EVALUATION_
+#include "Evaluation.h"
+#endif
+
 /*
  * Implementation of "ViBe: A Universal Background Subtraction Algorithm for Video Sequences"
  *

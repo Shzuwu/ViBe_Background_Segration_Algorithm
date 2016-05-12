@@ -1,29 +1,6 @@
-#include <vil/vil_image_view.h>
-#include <vbl/vbl_array_2d.h>
-
-#include <vnl/vnl_random.h>
-
 #include "ViBe_Model.h"
 
-#ifndef _VIL_SAVE_
-#define _VIL_SAVE_
-#include <vil/vil_save.h>
-#endif
 
-#ifndef _VIL_LOAD_
-#define _VIL_LOAD_
-#include <vil/vil_load.h>
-#endif
-
-#ifndef __VIBE_PIXEL_H__
-#define __VIBE_PIXEL_H__
-#include "ViBe_Pixel.h"
-#endif
-
-#ifndef _TIME_
-#define _TIME_
-#include <time.h>
-#endif
 
 ViBe_Model::ViBe_Model()
 {
@@ -213,3 +190,5 @@ int ViBe_Model::ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel)
     }
     return count;
 }
+
+
