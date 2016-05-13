@@ -87,8 +87,21 @@ public:
                               (i.e. 10 indicates approx 1 replacement every 10 frames)
      * Width -                width of the input images
      * Height -               height of the input images
+     *
+     * The ViBe_Pixel*** model data structure and its contained ViBe_Pixel objects are
+     * allocated in memory but not initialised aside from the dimensions of the 2D array
+     * of pointers
      */
 	void Init(int Samples, int Radius, int MinSamplesBackground, int RandomSubsampling, int Width, int Height);
+
+     /*
+      * Initialise the background model
+      * input: a vector of filename strings of the stream of all input images
+      * output: ViBe_Pixel*** model - a model of the background initialised with the first
+      * 20 images by default in the form of a 2D array of pointers to ViBe_Pixel objects
+      *
+      */
+    void InitBackground(vcl_vector<vcl_string> filenames);
 
     /*
      * Compute the background segmentation for an image
@@ -96,11 +109,7 @@ public:
      * output - output image, same size as input image, single channel image (i.e. gray scale). Pixels that are background
                 should be set to 0, pixels that are foreground should be 255
      */
-
-    void InitBackground(vcl_vector<vcl_string> filenames);
 	void Segment(vil_image_view<unsigned char>& input, vil_image_view<unsigned char>& output);
-
-
 
 protected:
 
@@ -112,11 +121,24 @@ protected:
      * nY - Y location of neighbouring pixel to update. |y - nY| <= 1, 0 <= nY < Height
      */
 	void PickNeighbour(int x, int y, int& nX, int& nY, vil_image_view <unsigned char>& input);
+
+    /*
+     * Randomly update a pixel stored in the background model
+     * Inputs: background_model - A ViBe_Pixel object which stores the background model for a particular x,y
+     *                            coordinate
+     *         pixel - a pointer to an array of 3 unsigned chars which represent the rgb values of the input
+     *                pixel coming from the current frame
+     * Outputs: Modifies one of the samples used for the background model managed by ViBe_Pixel*** model
+     */
     void UpdateModel( ViBe_Pixel& background_model, unsigned char* pixel);
-	int ComparePixel(ViBe_Pixel& background_model, unsigned char* pixel);
 
-    /// Going to document why I did not do this.
 
+	int ComparePixel( ViBe_Pixel& background_model, unsigned char* pixel);
+
+    /// Rather than implementing this method, the model data structure and all
+    /// basic member variables are assigned in the ViBe_Model.Init() method.
+    /// The Vibe_Model.InitBackground() method initialises the model with the first
+    /// 20 (by default) images in the input stream
     /*
      * Create the model. Initialise all data structures. Should be called from Init once all parameters have been set
      */
